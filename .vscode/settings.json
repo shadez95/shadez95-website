@@ -1,0 +1,28 @@
+{
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "prettier.eslintIntegration": true,
+  "javascript.format.enable": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
+  ],
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "prettier.endOfLine": "lf",
+  "svg.preview.background": "transparent"
+}

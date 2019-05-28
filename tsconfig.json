@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "alwaysStrict": true /* Parse in strict mode. */,
+    "esModuleInterop": true /* matches compilation setting */,
+    "isolatedModules": true /* to match webpack loader */,
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "module": "commonjs",
+    "noEmit": true /* Do not emit outputs. */,
+    /* Strict Type-Checking Options, optional, but recommended. */
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "preserveConstEnums": true /* Do not erase const enum declarations in generated code. */,
+    "removeComments": false /* Remove all comments except copy-right header comments beginning with /*! */,
+    "skipLibCheck": false /* Skip type checking of all declaration files */,
+    "sourceMap": true /* Generates corresponding .map file. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "target": "esnext" /* The type checking input. */
+  },
+  "exclude": ["node_modules", "public", ".cache"]
+}

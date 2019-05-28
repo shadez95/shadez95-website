@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500,700');
+@import '~bulma/sass/utilities/initial-variables';
+
+// Config vars --------
+
+// Font family
+$family-primary: 'IBM Plex Mono', monospace;
+$family-secondary: 'IBM Plex Mono', monospace;
+
+// Override blue with custom blue-type color
+$blue: #162b35;
+
+// font colors
+$text: $white-ter;
+$body-color: $white-ter;
+$title-color: $yellow;
+$subtitle-color: $white-ter;
+$content-heading-color: $yellow;
+$label-color: $white-ter;
+
+// Nav bar stuff
+$navbar-item-color: $white-ter;
+$navbar-background-color: $blue;
+
+// Settting background color
+$body-background-color: $blue;
+$message-background-color: $grey;
+
+.has-background-blue {
+  background-color: $blue !important;
+}
+
+// link colors
+$link: $blue;
+$navbar-item-hover-background-color: $grey-light;
+
+@import '~bulma';
+
+// Below code taken from bulma-divider library
+// https://github.com/Wikiki/bulma-divider
+// Licensed under MIT
+.is-divider,
+.is-divider-vertical {
+  display: block;
+  position: relative;
+  border-top: 0.1rem solid #dbdbdb;
+  height: 0.1rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.is-divider-vertical[data-content]::after,
+.is-divider[data-content]::after {
+  background: #fff;
+  color: #b5b5b5;
+  content: attr(data-content);
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  -webkit-transform: translateY(-1.1rem);
+  transform: translateY(-1.1rem);
+  text-align: center;
+}
+
+.is-divider-vertical {
+  display: block;
+  -webkit-flex: none;
+  flex: none;
+  width: auto;
+  height: auto;
+  padding: 2rem;
+  margin: 0;
+  position: relative;
+  border-top: none;
+  min-height: 2rem;
+}
+.is-divider-vertical::before {
+  border-left: 0.1rem solid #dbdbdb;
+  bottom: 1rem;
+  content: '';
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 1rem;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.is-divider-vertical[data-content]::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 0.1rem;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+}
+
+// Continuing with my own code -------
+
+.is-divider-vertical,
+.reduce-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media screen and (min-width: 1088px) {
+  a.navbar-item.is-active,
+  .navbar-link.is-active {
+    border: 2px solid white;
+    color: $white-ter;
+    &:hover {
+      color: $blue;
+    }
+  }
+}
