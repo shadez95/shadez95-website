@@ -45,6 +45,7 @@ const Index: React.FC = (): JSX.Element => {
               method="post"
               action="/contact/thanks/"
               data-netlify="true"
+              data-netlify-recaptcha="true"
               data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
             >
