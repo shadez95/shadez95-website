@@ -3,10 +3,10 @@ import { graphql } from 'gatsby';
 import { get } from 'lodash';
 import { GatsbyImageProps } from 'gatsby-image';
 import { Layout } from '../components/Layout';
-import Features from '../components/Features';
+import { FeatureGrid } from '../components/FeatureGrid';
 import { Testimonials } from '../components/Testimonials';
 import Pricing from '../components/Pricing';
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+import { PreviewCompatibleImage } from '../components/PreviewCompatibleImage';
 
 type Image = | {
   childImageSharp: GatsbyImageProps;
@@ -99,7 +99,7 @@ export const ProductPageTemplate: FC<ProductPageTemplateProps> = ({
                   <p>{description}</p>
                 </div>
               </div>
-              <Features gridItems={intro.blurbs} />
+              <FeatureGrid gridItems={intro.blurbs} />
               <div className="columns">
                 <div className="column is-7">
                   <h3 className="has-text-weight-semibold is-size-3">{main.heading}</h3>

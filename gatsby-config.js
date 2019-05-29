@@ -3,9 +3,9 @@ const proxy = require('http-proxy-middleware');
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Netlify CMS Starter + Ts + Styled Components',
+    title: 'shadez95 website',
     description:
-      'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
+      'shadez95 is a developer, PC gamer, and automotive enthusiast',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -23,19 +23,36 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Gatsby + Netlify CMS Starter + TS + SC',
-        short_name: 'Gatsby + Netlify + TS + SC',
+        name: 'shadez95 website',
+        short_name: 'shadez95 website',
         start_url: '/',
-        background_color: '#6b37bf',
-        theme_color: '#6b37bf',
+        background_color: '#162b35',
+        theme_color: '#162b35',
         icons: [
-          { src: 'static/img/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: 'static/img/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'static/assets/android-icon-36x36.png', sizes: '36x36', type: 'image/png' },
+          { src: 'static/assets/android-icon-48x48.png', sizes: '48x48', type: 'image/png' },
+          { src: 'static/assets/android-icon-72x72.png', sizes: '72x72', type: 'image/png' },
+          { src: 'static/assets/android-icon-96x96.png', sizes: '96x96', type: 'image/png' },
+          { src: 'static/assets/android-icon-144x144.png', sizes: '144x144', type: 'image/png' },
+          { src: 'static/assets/android-icon-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'static/assets/apple-icon-57x57.png', sizes: '57x57', type: 'image/png' },
+          { src: 'static/assets/apple-icon-60x60.png', sizes: '60x60', type: 'image/png' },
+          { src: 'static/assets/apple-icon-72x72.png', sizes: '72x72', type: 'image/png' },
+          { src: 'static/assets/apple-icon-72x72.png', sizes: '76x76', type: 'image/png' },
+          { src: 'static/assets/apple-icon-76x76.png', sizes: '76x76', type: 'image/png' },
+          { src: 'static/assets/apple-icon-114x114.png', sizes: '114x114', type: 'image/png' },
+          { src: 'static/assets/apple-icon-120x120.png', sizes: '120x120', type: 'image/png' },
+          { src: 'static/assets/apple-icon-144x144.png', sizes: '144x144', type: 'image/png' },
+          { src: 'static/assets/apple-icon-152x152.png', sizes: '152x152', type: 'image/png' },
+          { src: 'static/assets/apple-icon-180x180.png', sizes: '180x180', type: 'image/png' },
+          { src: 'static/assets/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+          { src: 'static/assets/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+          { src: 'static/assets/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
         ],
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: 'standalone',
-        icon: 'static/img/favicon-32x32.png', // This path is relative to the root of the site.
+        icon: 'static/assets/shadez.png', // This path is relative to the root of the site.
       },
     },
     {
