@@ -46,19 +46,11 @@ const Index: React.FC = (): JSX.Element => {
               action="/contact/thanks/"
               data-netlify="true"
               data-netlify-recaptcha="true"
-              data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
             >
               {/* The `form-name` hidden field is required to
               support form submissions without JavaScript */}
               <input type="hidden" name="form-name" value="contact" />
-              <div hidden>
-                <label className="label" htmlFor="bot-field">
-                  Don’t fill this out:
-                  {' '}
-                  <input name="bot-field" onChange={handleInputChange} />
-                </label>
-              </div>
               <div className="columns">
                 <div className="column">
                   <div className="field">
