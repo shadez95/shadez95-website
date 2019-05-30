@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
 import { navigate } from 'gatsby';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'form-hooks';
@@ -68,11 +69,6 @@ const Index: React.FC = (): JSX.Element => {
     // eslint-disable-next-line no-shadow
     validate: (values): JSONKeyValueString => {
       const { name, email, message } = values;
-      if (name.length > 0 && email.length > 0 && message.length > 0) {
-        setAllValuesNotFilled(false);
-      } else {
-        setAllValuesNotFilled(true);
-      }
 
       // disable eslint prefer-const because there
       // is chance validationErrors will be set
@@ -86,6 +82,12 @@ const Index: React.FC = (): JSX.Element => {
       } else if (!validateEmail(values.email)) validationErrors.email = 'Not a valid email';
 
       if (!message.length) validationErrors.message = 'Message required';
+
+      if (name.length > 0 && email.length > 0 && message.length > 0 && isEmpty(validationErrors)) {
+        setAllValuesNotFilled(false);
+      } else {
+        setAllValuesNotFilled(true);
+      }
 
       return validationErrors;
     },
