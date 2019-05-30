@@ -12,6 +12,11 @@ function encode(data: JSONKeyValueString): string {
     .join('&');
 }
 
+function validateEmail(email: string): boolean {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 const Index: React.FC = (): JSX.Element => {
   const onSubmit = (values: JSONKeyValueString): void => {
     // e.preventDefault();
@@ -68,11 +73,21 @@ const Index: React.FC = (): JSX.Element => {
       } else {
         setAllValuesNotFilled(true);
       }
-      return ({
-        ...(!values.name.length ? { name: 'Requires a name' } : {}),
-        ...(!values.email.length ? { email: 'Requires an email' } : {}),
-        ...(!values.message.length ? { email: 'Requires a message' } : {}),
-      });
+
+      // disable eslint prefer-const because there
+      // is chance validationErrors will be set
+      // eslint-disable-next-line prefer-const
+      let validationErrors: JSONKeyValueString = {};
+
+      if (!name.length) validationErrors.name = 'Name required';
+
+      if (!email.length) {
+        errors.email = 'Email required';
+      } else if (!validateEmail(values.email)) validationErrors.email = 'Not a valid email';
+
+      if (!message.length) validationErrors.message = 'Message required';
+
+      return validationErrors;
     },
   });
 
