@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
+import { faGithubSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { NavbarIcon } from './NavbarIcon';
 
 interface VoidFunction {
   (): void;
@@ -78,26 +80,8 @@ export const Navbar: React.FC = (): JSX.Element => {
           </div>
           <div className="navbar-end has-text-centered">
             <div className="buttons">
-              <a
-                className="navbar-item"
-                href="https://github.com/shadez95"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon has-text-warning">
-                  <i className="fab fa-2x fa-github-square" />
-                </span>
-              </a>
-              <a
-                className="navbar-item"
-                href="https://twitter.com/shadez95"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon has-text-warning">
-                  <i className="fab fa-2x fa-twitter-square" />
-                </span>
-              </a>
+              <NavbarIcon href="https://github.com/shadez95" target="_blank" rel="noopener noreferrer" icon={faGithubSquare} />
+              <NavbarIcon href="https://twitter.com/shadez95" target="_blank" rel="noopener noreferrer" icon={faTwitterSquare} />
             </div>
           </div>
         </div>
