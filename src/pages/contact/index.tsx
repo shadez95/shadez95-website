@@ -75,6 +75,7 @@ const Index: React.FC = (): JSX.Element => {
       // eslint-disable-next-line prefer-const
       let validationErrors: JSONKeyValueString = {};
 
+      console.log('validate name: ', name);
       if (!name.length) validationErrors.name = 'Name required';
 
       if (!email.length) {
@@ -93,6 +94,14 @@ const Index: React.FC = (): JSX.Element => {
     },
   });
 
+  console.log('touched.name', touched.name);
+  console.log('errors.name', errors.name);
+
+  let nameSuccess;
+  if (touched.name != null) {
+    nameSuccess = !((touched.name && values.name.length === 0) || errors.name);
+  }
+  console.log('nameSuccess', nameSuccess);
   return (
     <Layout>
       <section className="section">
@@ -104,6 +113,7 @@ const Index: React.FC = (): JSX.Element => {
               method="post"
               action="/contact/thanks/"
               data-netlify="true"
+              data-netlify-recaptcha="true"
               onSubmit={handleSubmit}
             >
               {/* The `form-name` hidden field is required to
@@ -111,12 +121,19 @@ const Index: React.FC = (): JSX.Element => {
               <input type="hidden" name="form-name" value="contact" />
               <div className="columns">
                 <div className="column">
-                  <InputField label="Your Name" name="name" type="text" value={values.name} onBlur={handleBlur} onChange={handleChange} required />
-                  { touched.name && errors.name }
+                  <InputField
+                    label="Your Name"
+                    name="name"
+                    type="text"
+                    value={values.name}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    required
+                    success={nameSuccess}
+                  />
                 </div>
                 <div className="column">
                   <InputField label="Email" name="email" type="email" value={values.email} onBlur={handleBlur} onChange={handleChange} required />
-                  { touched.email || errors.email }
                 </div>
               </div>
               <div className="field">
@@ -124,7 +141,6 @@ const Index: React.FC = (): JSX.Element => {
                   Message
                 </label>
                 <div className="control">
-                  { touched.message || errors.message }
                   <textarea
                     className="textarea"
                     name="message"
