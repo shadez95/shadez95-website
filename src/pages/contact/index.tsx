@@ -46,23 +46,16 @@ const Index: React.FC = (): JSX.Element => {
   const [captchaDisable, setCaptchaDisable] = useState(true);
   const [allValuesNotFilled, setAllValuesNotFilled] = useState(true);
 
-  function handleCaptchaChange(check: string | null): void {
-    if (typeof check === 'string') setCaptchaDisable(false);
-  }
-
+  // form state manager
   const {
-    errors,
-    touched,
-    values,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
+    errors, touched, values, handleBlur,
+    handleChange, handleSubmit, isSubmitting,
   } = useForm({
     initialValues: {
       name: '',
       email: '',
       message: '',
+      'g-recaptcha-response': '',
     },
     onSubmit,
     // disabling no-shadow because it's more explicit and
@@ -94,6 +87,14 @@ const Index: React.FC = (): JSX.Element => {
     },
   });
 
+  // captcha handler
+  function handleCaptchaChange(check: string | null): void {
+    if (typeof check === 'string') {
+      values['g-recaptcha-response'] = check;
+      setCaptchaDisable(false);
+    }
+  }
+
   let nameSuccess;
   let emailSuccess;
   let messageSuccess;
@@ -118,6 +119,7 @@ const Index: React.FC = (): JSX.Element => {
             <h1>Contact Me</h1>
             <form
               name="contact"
+              method="post"
               data-netlify="true"
               data-netlify-recaptcha="true"
               onSubmit={handleSubmit}
