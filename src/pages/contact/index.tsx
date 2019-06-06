@@ -76,7 +76,6 @@ const Index: React.FC = (): JSX.Element => {
       // eslint-disable-next-line prefer-const
       let validationErrors: JSONKeyValueString = {};
 
-      console.log('validate name: ', name);
       if (!name.length) validationErrors.name = 'Name required';
 
       if (!email.length) {
@@ -95,10 +94,6 @@ const Index: React.FC = (): JSX.Element => {
     },
   });
 
-  console.log('touched.name', touched.name);
-  console.log('touched.email', touched.email);
-  // console.log('errors.name', errors.name);
-
   let nameSuccess;
   let emailSuccess;
   let messageSuccess;
@@ -115,7 +110,6 @@ const Index: React.FC = (): JSX.Element => {
     messageSuccess = !((touched.message && values.message.length === 0) || errors.message);
   }
 
-  // console.log('nameSuccess', nameSuccess);
   return (
     <Layout>
       <section className="section">
@@ -124,8 +118,6 @@ const Index: React.FC = (): JSX.Element => {
             <h1>Contact Me</h1>
             <form
               name="contact"
-              method="post"
-              action="/contact/thanks/"
               data-netlify="true"
               data-netlify-recaptcha="true"
               onSubmit={handleSubmit}
