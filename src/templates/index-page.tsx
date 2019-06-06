@@ -2,25 +2,13 @@ import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 import { v4 } from 'uuid';
 import styled from 'styled-components';
+import { IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 import { Layout } from '../components/Layout';
+import { NavbarItemIcon } from '../components/NavbarItemIcon';
+import { IndexPageTemplateProps, IndexPageQuery } from '../CustomTypes';
 
-interface TextProps {
-  text: string;
-}
 
-interface LinksList {
-  fontawesomeIcon: string;
-  url: string;
-}
-
-interface IndexPageTemplateProps {
-  title: string;
-  subtitles: TextProps[];
-  links: LinksList[];
-}
-
-const A = styled.a`
-  padding-left: 25px;
+const Padding = styled.div`
   padding-right: 25px;
 `;
 
@@ -42,19 +30,20 @@ export const IndexPageTemplate: FC<IndexPageTemplateProps> = ({
         ))}
         {links.length > 0 && (
           <div className="buttons">
-            {links.map(({ fontawesomeIcon, url }): JSX.Element => (
-              <A
-                className="navbar-item"
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={v4()}
-              >
-                <span className="icon">
-                  <i className={fontawesomeIcon} />
-                </span>
-              </A>
-            ))}
+            {links.map(({ fontawesomeIcon, url }): JSX.Element => {
+              const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
+              return (
+                <Padding key={v4()}>
+                  <NavbarItemIcon
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    icon={iconArr}
+                    size="3x"
+                  />
+                </Padding>
+              );
+            })}
           </div>
         )}
       </div>
@@ -62,16 +51,8 @@ export const IndexPageTemplate: FC<IndexPageTemplateProps> = ({
   </section>
 );
 
-interface Props {
-  data: {
-    markdownRemark: {
-      frontmatter: IndexPageTemplateProps;
-    };
-  };
-}
-
 // This is what is actually rendered on website
-const IndexPage: FC<Props> = ({ data }): JSX.Element => {
+const IndexPage: FC<IndexPageQuery> = ({ data }): JSX.Element => {
   const { frontmatter } = data.markdownRemark;
   return (
     <Layout>

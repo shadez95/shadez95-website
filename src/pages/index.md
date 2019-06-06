@@ -6,13 +6,12 @@ subtitles:
   - text: PC Gamer
   - text: Car-Truck Enthusiast
 links:
-  - fontawesomeIcon: fab fa-3x fa-github
+  - fontawesomeIcon: fab github
     url: 'https://github.com/shadez95'
-  - fontawesomeIcon: fab fa-3x fa-twitter
+  - fontawesomeIcon: fab twitter
     url: 'https://twitter.com/shadez95'
-  - fontawesomeIcon: fab fa-3x fa-youtube
+  - fontawesomeIcon: fab youtube
     url: 'https://www.youtube.com/channel/UCRuJSH_5UEtbEeuD04yGeRw'
-  - fontawesomeIcon: fab fa-3x fa-instagram
+  - fontawesomeIcon: fab instagram
     url: 'https://www.instagram.com/shadez95/'
 ---
-

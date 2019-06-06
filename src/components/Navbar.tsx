@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
-import { faGithubSquare, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
-import { NavbarIcon } from './NavbarIcon';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import { v4 } from 'uuid';
+import { IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
+import { LinksList } from '../CustomTypes';
+import { NavbarItemIcon } from './NavbarItemIcon';
 
 interface VoidFunction {
   (): void;
+}
+
+interface LinksQuery {
+  markdownRemark: {
+    frontmatter: {
+      links: LinksList[];
+    };
+  };
 }
 
 export const Navbar: React.FC = (): JSX.Element => {
@@ -35,6 +45,22 @@ export const Navbar: React.FC = (): JSX.Element => {
   }
 
   const navBarActive = active ? 'is-active' : '';
+
+  const data = useStaticQuery(graphql`
+    query LinksQuery {
+      markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+        frontmatter {
+          links {
+            fontawesomeIcon
+            url
+          }
+        }
+      }
+    }
+  `) as LinksQuery;
+
+  const { markdownRemark: { frontmatter: { links } } } = data;
+  console.log(links);
 
   return (
     <nav className={`navbar is-fixed-top ${darkNav}`} role="navigation" aria-label="main-navigation">
@@ -80,8 +106,22 @@ export const Navbar: React.FC = (): JSX.Element => {
           </div>
           <div className="navbar-end has-text-centered">
             <div className="buttons">
-              <NavbarIcon href="https://github.com/shadez95" target="_blank" rel="noopener noreferrer" icon={faGithubSquare} />
-              <NavbarIcon href="https://twitter.com/shadez95" target="_blank" rel="noopener noreferrer" icon={faTwitterSquare} />
+              {links.length > 0
+                && links.map(({ fontawesomeIcon, url }): JSX.Element => {
+                  const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
+                  return (
+                    <NavbarItemIcon
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      icon={iconArr}
+                      key={v4()}
+                      bulmaColor="has-text-warning"
+                      size="lg"
+                    />
+                  );
+                })
+              }
             </div>
           </div>
         </div>

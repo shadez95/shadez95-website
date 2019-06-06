@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { HTMLInputTypes } from './CustomTypes';
+import { HTMLInputTypes } from '../CustomTypes';
 
 interface InputFieldProps {
   label: string;

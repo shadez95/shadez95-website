@@ -6,7 +6,7 @@ import { useForm } from 'form-hooks';
 import { Layout } from '../../components/Layout';
 import { InputField } from '../../components/InputField';
 import { TextField } from '../../components/TextField';
-import { JSONKeyValueString } from '../../components/CustomTypes';
+import { JSONKeyValueString } from '../../CustomTypes';
 
 function encode(data: JSONKeyValueString): string {
   return Object.keys(data)

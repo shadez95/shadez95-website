@@ -1,9 +1,15 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faGithub, faTwitter, faYoutube, faInstagram, faGithubSquare, faTwitterSquare,
+} from '@fortawesome/free-brands-svg-icons';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import './all.scss';
+
+library.add(faGithub, faTwitter, faYoutube, faInstagram, faGithubSquare, faTwitterSquare);
 
 export const Layout: React.FC = ({ children }): JSX.Element => (
   <StaticQuery
