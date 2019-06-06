@@ -1,12 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { HTMLInputTypes } from './CustomTypes';
 
-interface InputFieldProps {
+interface TextFieldProps {
   label: string;
   name: string;
-  type: HTMLInputTypes;
   onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onBlur?: (event: React.ChangeEvent<any>) => void;
   value?: string | number | string[] | undefined;
@@ -14,10 +12,9 @@ interface InputFieldProps {
   required: boolean;
 }
 
-export const InputField: React.FC<InputFieldProps> = ({
+export const TextField: React.FC<TextFieldProps> = ({
   label,
   name,
-  type,
   onBlur,
   onChange,
   value,
@@ -25,9 +22,9 @@ export const InputField: React.FC<InputFieldProps> = ({
   success,
 }): JSX.Element => {
   const controlClassName = `control${success != null && ' has-icons-right'}`;
-  let inputClassName = 'input';
+  let textClassName = 'textarea';
   if (success != null) {
-    inputClassName = `input${success ? ' is-success' : ' is-danger'}`;
+    textClassName = `textarea${success ? ' is-success' : ' is-danger'}`;
   }
 
   return (
@@ -36,13 +33,12 @@ export const InputField: React.FC<InputFieldProps> = ({
         {label}
       </label>
       <div className={controlClassName}>
-        <input
-          className={inputClassName}
-          type={type}
+        <textarea
+          className={textClassName}
           name={name}
+          value={value}
           onBlur={onBlur}
           onChange={onChange}
-          value={value}
           id={name}
           required={required}
         />

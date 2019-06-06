@@ -5,6 +5,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'form-hooks';
 import { Layout } from '../../components/Layout';
 import { InputField } from '../../components/InputField';
+import { TextField } from '../../components/TextField';
 import { JSONKeyValueString } from '../../components/CustomTypes';
 
 function encode(data: JSONKeyValueString): string {
@@ -95,13 +96,26 @@ const Index: React.FC = (): JSX.Element => {
   });
 
   console.log('touched.name', touched.name);
-  console.log('errors.name', errors.name);
+  console.log('touched.email', touched.email);
+  // console.log('errors.name', errors.name);
 
   let nameSuccess;
+  let emailSuccess;
+  let messageSuccess;
+
   if (touched.name != null) {
     nameSuccess = !((touched.name && values.name.length === 0) || errors.name);
   }
-  console.log('nameSuccess', nameSuccess);
+
+  if (touched.email != null) {
+    emailSuccess = !((touched.email && values.email.length === 0) || errors.email);
+  }
+
+  if (touched.message != null) {
+    messageSuccess = !((touched.message && values.message.length === 0) || errors.message);
+  }
+
+  // console.log('nameSuccess', nameSuccess);
   return (
     <Layout>
       <section className="section">
@@ -133,25 +147,27 @@ const Index: React.FC = (): JSX.Element => {
                   />
                 </div>
                 <div className="column">
-                  <InputField label="Email" name="email" type="email" value={values.email} onBlur={handleBlur} onChange={handleChange} required />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label" htmlFor="message">
-                  Message
-                </label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    name="message"
-                    value={values.message}
+                  <InputField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    value={values.email}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    id="message"
                     required
+                    success={emailSuccess}
                   />
                 </div>
               </div>
+              <TextField
+                label="Message"
+                name="message"
+                value={values.message}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                required
+                success={messageSuccess}
+              />
               <div className="field">
                 <ReCAPTCHA
                   sitekey="6LdOKaYUAAAAAGjMLVg9qpoMss1Su76ohT7ovWHr"
