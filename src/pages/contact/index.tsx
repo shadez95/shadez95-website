@@ -20,6 +20,8 @@ function validateEmail(email: string): boolean {
 }
 
 const Index: React.FC = (): JSX.Element => {
+  const [recaptchaValue, setRecaptchaValue] = useState('');
+
   const onSubmit = (values: JSONKeyValueString): void => {
     // e.preventDefault();
     // const form = e.currentTarget;
@@ -28,6 +30,7 @@ const Index: React.FC = (): JSX.Element => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': 'contact',
+        'g-recaptcha-response': recaptchaValue,
         ...values,
       }),
     })
@@ -43,7 +46,6 @@ const Index: React.FC = (): JSX.Element => {
       .catch((error): void => alert(error));
   };
 
-  const [captchaDisable, setCaptchaDisable] = useState(true);
   const [allValuesNotFilled, setAllValuesNotFilled] = useState(true);
 
   // form state manager
@@ -55,7 +57,6 @@ const Index: React.FC = (): JSX.Element => {
       name: '',
       email: '',
       message: '',
-      'g-recaptcha-response': '',
     },
     onSubmit,
     // disabling no-shadow because it's more explicit and
@@ -90,8 +91,7 @@ const Index: React.FC = (): JSX.Element => {
   // captcha handler
   function handleCaptchaChange(check: string | null): void {
     if (typeof check === 'string') {
-      values['g-recaptcha-response'] = check;
-      setCaptchaDisable(false);
+      setRecaptchaValue(check);
     }
   }
 
@@ -169,7 +169,7 @@ const Index: React.FC = (): JSX.Element => {
                 />
               </div>
               <div className="field">
-                <button className="button is-primary" type="submit" disabled={isSubmitting || allValuesNotFilled || captchaDisable}>
+                <button className="button is-primary" type="submit" disabled={isSubmitting || allValuesNotFilled || recaptchaValue === ''}>
                   Send
                 </button>
               </div>
