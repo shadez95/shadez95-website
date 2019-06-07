@@ -6,6 +6,7 @@ import AboutPagePreview from './preview-templates/AboutPagePreview';
 import BlogPostPreview from './preview-templates/BlogPostPreview';
 import ProductPagePreview from './preview-templates/ProductPagePreview';
 import IndexPagePreview from './preview-templates/IndexPagePreview';
+import '../components/all.scss';
 
 // Hard to use with CSS-in-JS libs. #793
 // This is a component taken from some github issues
