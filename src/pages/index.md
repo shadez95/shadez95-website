@@ -2,9 +2,9 @@
 templateKey: index-page
 title: I like to do a lot of stuff
 subtitles:
-  - text: Developer
-  - text: PC Gamer
-  - text: Car-Truck Enthusiast
+  - 'Map { "text": "Developer" }'
+  - 'Map { "text": "PC Gamer" }'
+  - 'Map { "text": "Automotive Enthusiast" }'
 links:
   - fontawesomeIcon: fab github
     url: 'https://github.com/shadez95'
@@ -15,3 +15,4 @@ links:
   - fontawesomeIcon: fab instagram
     url: 'https://www.instagram.com/shadez95/'
 ---
+
