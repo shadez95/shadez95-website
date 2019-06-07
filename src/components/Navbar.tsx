@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { v4 } from 'uuid';
 import { IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 import { LinksList } from '../CustomTypes';
 import { NavbarItemIcon } from './NavbarItemIcon';
-
-interface VoidFunction {
-  (): void;
-}
 
 interface LinksQuery {
   markdownRemark: {
@@ -19,26 +15,6 @@ interface LinksQuery {
 
 export const Navbar: React.FC = (): JSX.Element => {
   const [active, setActive] = useState(false);
-  const [darkNav, setDarkNav] = useState('');
-
-  useEffect((): VoidFunction => {
-    window.onscroll = function onScroll(): void {
-      // 2 different if statements to avoid re-rendering
-      // when it's unnecessary for better performance
-
-      // Will only re-render when window is scrolled to top
-      // and darkNav is not an empty string
-      if (window.pageYOffset === 0 && darkNav !== '') setDarkNav('');
-
-      // Will only re-render when window is scrolled down
-      // and darkNav is empty string
-      if (window.pageYOffset > 0 && darkNav === '') setDarkNav('has-background-grey-dark');
-    };
-    return (): void => {
-      // Clean up window.onscroll event handler
-      window.onscroll = null;
-    };
-  });
 
   function toggleHamburger(): void {
     setActive(!active);
@@ -60,10 +36,9 @@ export const Navbar: React.FC = (): JSX.Element => {
   `) as LinksQuery;
 
   const { markdownRemark: { frontmatter: { links } } } = data;
-  console.log(links);
 
   return (
-    <nav className={`navbar is-fixed-top ${darkNav}`} role="navigation" aria-label="main-navigation">
+    <nav className="navbar is-fixed-top" role="navigation" aria-label="main-navigation">
       <div className="container">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item" title="Home">
@@ -105,7 +80,7 @@ export const Navbar: React.FC = (): JSX.Element => {
             </Link>
           </div>
           <div className="navbar-end has-text-centered">
-            <div className="buttons">
+            <div className="buttons has-text-centered">
               {links.length > 0
                 && links.map(({ fontawesomeIcon, url }): JSX.Element => {
                   const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
