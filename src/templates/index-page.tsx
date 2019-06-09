@@ -40,6 +40,7 @@ export const IndexPageTemplate: FC<IndexPageTemplateProps> = ({
                     rel="noopener noreferrer"
                     icon={iconArr}
                     size="3x"
+                    navbarItem
                   />
                 </Padding>
               );
