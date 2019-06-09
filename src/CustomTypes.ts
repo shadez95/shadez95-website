@@ -33,3 +33,5 @@ export declare interface IndexPageQuery {
     };
   };
 }
+
+export declare type VoidFunction = () => void;
