@@ -26,7 +26,7 @@ export const Navbar: React.FC = (): JSX.Element => {
   const [socialNavbarItem, setSocialNavbarItem] = useState(true);
   useWindowResize((): void => {
     if (window.innerWidth < 1088) setSocialNavbarItem(false);
-  });
+  }, true);
 
   function toggleHamburger(): void {
     setActive(!active);
@@ -85,7 +85,7 @@ export const Navbar: React.FC = (): JSX.Element => {
               Contact
             </Link>
           </div>
-          <div className="navbar-end has-text-centered">
+          <div className={`navbar-end has-text-centered${socialNavbarItem ? '' : ' level is-mobile'}`}>
             {links.length > 0
                 && links.map(({ fontawesomeIcon, url }): JSX.Element => {
                   const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
@@ -99,6 +99,7 @@ export const Navbar: React.FC = (): JSX.Element => {
                       bulmaColor="has-text-warning"
                       size="lg"
                       navbarItem={socialNavbarItem}
+                      levelItem={!socialNavbarItem}
                     />
                   );
                 })

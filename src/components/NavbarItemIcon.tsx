@@ -14,20 +14,30 @@ interface IconProps {
   rel: string;
   bulmaColor?: string;
   size?: SizeProp;
-  navbarItem: boolean;
+  navbarItem?: boolean;
+  levelItem?: boolean;
 }
 
 export const NavbarItemIcon: React.FC<IconProps> = ({
-  icon, href, target, rel, bulmaColor, size, navbarItem,
-}): JSX.Element => (
-  <a
-    className={navbarItem ? 'navbar-item' : ''}
-    href={href}
-    target={target}
-    rel={rel}
-  >
-    <span className={`icon ${bulmaColor}`}>
-      <FontAwesomeIcon icon={icon} size={size} />
-    </span>
-  </a>
-);
+  icon, href, target, rel, bulmaColor = '', size, navbarItem = false, levelItem = false,
+}): JSX.Element => {
+  let aClassName = '';
+  if (navbarItem) {
+    aClassName += 'navbar-item';
+  }
+  if (levelItem) {
+    aClassName += 'level-item is-mobile';
+  }
+  return (
+    <a
+      className={aClassName}
+      href={href}
+      target={target}
+      rel={rel}
+    >
+      <span className={`icon ${bulmaColor}`}>
+        <FontAwesomeIcon icon={icon} size={size} />
+      </span>
+    </a>
+  );
+};
