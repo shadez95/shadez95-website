@@ -1,5 +1,11 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import styled from 'styled-components';
+
+const P = styled.p`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
 
 interface EdgeNode {
   id: string;
@@ -56,18 +62,17 @@ export const BlogRoll: React.FC = (): JSX.Element => {
           && posts.map(({ node: post }): JSX.Element => (
             <div className="is-parent column is-6" key={post.id}>
               <article className="tile is-child box notification">
-                <p>
-                  <Link
-                    className="title has-text-primary is-size-4"
-                    to={post.fields.slug}
-                  >
-                    {post.frontmatter.title}
-                  </Link>
-                  <span> &bull; </span>
-                  <span className="subtitle is-size-5 is-block">
+                <Link
+                  className="title has-text-primary is-size-4"
+                  to={post.fields.slug}
+                >
+                  {post.frontmatter.title}
+                </Link>
+                <P>
+                  <span className="subtitle is-size-5">
                     {post.frontmatter.date}
                   </span>
-                </p>
+                </P>
                 <p>
                   {post.excerpt}
                   <br />
