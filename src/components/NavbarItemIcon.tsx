@@ -4,6 +4,9 @@ import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 
 import { ATargetAttributes } from '../CustomTypes';
 
+/**
+ * IconProps are props for NavbarItemIcon
+ */
 interface IconProps {
   icon: IconProp;
   href: string;
@@ -11,13 +14,14 @@ interface IconProps {
   rel: string;
   bulmaColor?: string;
   size?: SizeProp;
+  navbarItem: boolean;
 }
 
 export const NavbarItemIcon: React.FC<IconProps> = ({
-  icon, href, target, rel, bulmaColor, size,
+  icon, href, target, rel, bulmaColor, size, navbarItem,
 }): JSX.Element => (
   <a
-    className="navbar-item"
+    className={navbarItem ? 'navbar-item' : ''}
     href={href}
     target={target}
     rel={rel}

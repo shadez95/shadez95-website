@@ -4,7 +4,12 @@ import { v4 } from 'uuid';
 import { IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
 import { LinksList } from '../CustomTypes';
 import { NavbarItemIcon } from './NavbarItemIcon';
+import { useWindowResize } from './useWindowResize';
 
+/**
+ * LinksQuery is an interface that represents a JSON object
+ * for querying through gatsby's graphql
+ */
 interface LinksQuery {
   markdownRemark: {
     frontmatter: {
@@ -13,8 +18,15 @@ interface LinksQuery {
   };
 }
 
+/**
+ * Navbar component wraps entire navbar at top of page.
+ */
 export const Navbar: React.FC = (): JSX.Element => {
   const [active, setActive] = useState(false);
+  const [socialNavbarItem, setSocialNavbarItem] = useState(true);
+  useWindowResize((): void => {
+    if (window.innerWidth < 1088) setSocialNavbarItem(false);
+  });
 
   function toggleHamburger(): void {
     setActive(!active);
@@ -74,8 +86,7 @@ export const Navbar: React.FC = (): JSX.Element => {
             </Link>
           </div>
           <div className="navbar-end has-text-centered">
-            <div className="buttons has-text-centered">
-              {links.length > 0
+            {links.length > 0
                 && links.map(({ fontawesomeIcon, url }): JSX.Element => {
                   const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
                   return (
@@ -87,11 +98,11 @@ export const Navbar: React.FC = (): JSX.Element => {
                       key={v4()}
                       bulmaColor="has-text-warning"
                       size="lg"
+                      navbarItem={socialNavbarItem}
                     />
                   );
                 })
-              }
-            </div>
+            }
           </div>
         </div>
       </div>
