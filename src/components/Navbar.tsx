@@ -7,6 +7,50 @@ import { NavbarItemIcon } from './NavbarItemIcon';
 import { useWindowResize } from './useWindowResize';
 
 /**
+ * SocialNav is a functional component that handles logic for rendering
+ * social media icons and links in navbar
+ */
+const SocialNav: React.FC<{
+  socialNavbarItem: boolean;
+  links: LinksList[];
+}> = ({ socialNavbarItem, links }): JSX.Element => {
+  if (links.length > 0) {
+    const linksComponents = links.map(({ fontawesomeIcon, url }): JSX.Element => {
+      const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
+      return (
+        <NavbarItemIcon
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={iconArr}
+          key={v4()}
+          bulmaColor="has-text-warning"
+          size="lg"
+          navbarItem={socialNavbarItem}
+          levelItem={!socialNavbarItem}
+        />
+      );
+    });
+
+    if (socialNavbarItem) {
+      return (
+        <React.Fragment>
+          {linksComponents}
+        </React.Fragment>
+      );
+    }
+
+    return (
+      <div className="navbar-item level is-mobile">
+        {linksComponents}
+      </div>
+    );
+  }
+
+  return <div />;
+};
+
+/**
  * LinksQuery is an interface that represents a JSON object
  * for querying through gatsby's graphql
  */
@@ -85,25 +129,8 @@ export const Navbar: React.FC = (): JSX.Element => {
               Contact
             </Link>
           </div>
-          <div className={`navbar-end has-text-centered${socialNavbarItem ? '' : ' level is-mobile'}`}>
-            {links.length > 0
-                && links.map(({ fontawesomeIcon, url }): JSX.Element => {
-                  const iconArr = fontawesomeIcon.split(' ') as [IconPrefix, IconName];
-                  return (
-                    <NavbarItemIcon
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      icon={iconArr}
-                      key={v4()}
-                      bulmaColor="has-text-warning"
-                      size="lg"
-                      navbarItem={socialNavbarItem}
-                      levelItem={!socialNavbarItem}
-                    />
-                  );
-                })
-            }
+          <div className="navbar-end has-text-centered">
+            <SocialNav socialNavbarItem={socialNavbarItem} links={links} />
           </div>
         </div>
       </div>
