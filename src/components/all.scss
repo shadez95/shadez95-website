@@ -11,6 +11,7 @@ $family-secondary: 'IBM Plex Mono', monospace;
 $blue: #162b35;
 
 // font colors
+$text-strong: $white-ter;
 $text: $white-ter;
 $body-color: $white-ter;
 $title-color: $yellow;
@@ -18,13 +19,14 @@ $subtitle-color: $white-ter;
 $content-heading-color: $yellow;
 $label-color: $white-ter;
 
-// Nav bar stuff
-$navbar-item-color: $white-ter;
-$navbar-background-color: $grey-dark;
-
 // Settting background color
+$background: $grey-dark;
 $body-background-color: $blue;
 $message-background-color: $grey;
+
+// Nav bar stuff
+$navbar-item-color: $white-ter;
+$navbar-background-color: $background;
 
 .has-background-blue {
   background-color: $blue !important;
@@ -100,6 +102,13 @@ $navbar-item-hover-background-color: $grey-light;
 .reduce-padding {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+a {
+  color: $white-ter;
+  &:hover {
+    color: $primary;
+  }
 }
 
 @media screen and (min-width: 1088px) {
