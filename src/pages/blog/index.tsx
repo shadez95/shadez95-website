@@ -8,7 +8,7 @@ const IndexBlog: React.FC = (): JSX.Element => (
     <section className="section">
       <div className="container">
         <div className="content">
-          <h1 className="has-text-weight-bold title is-size-1">
+          <h1 className="has-text-weight-bold title">
             Latest Stories
           </h1>
         </div>
