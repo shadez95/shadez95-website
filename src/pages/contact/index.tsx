@@ -3,11 +3,11 @@ import { isEmpty } from 'lodash';
 import { navigate } from 'gatsby';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'form-hooks';
-import toaster from 'toasted-notes';
 import { Layout } from '../../components/Layout';
 import { InputField } from '../../components/InputField';
 import { TextField } from '../../components/TextField';
 import { JSONKeyValueString } from '../../CustomTypes';
+import { notify } from '../../components/notify';
 
 function encode(data: JSONKeyValueString): string {
   return Object.keys(data)
@@ -45,15 +45,7 @@ const Index: React.FC = (): JSX.Element => {
         navigate('/contact/thanks/');
       })
       .catch((error): void => {
-        toaster.notify(({ onClose }): JSX.Element => (
-          <div className="notification is-danger">
-            <button type="button" onClick={onClose} className="delete" />
-            {`Error occurred submitting contact form. ${error}`}
-          </div>
-        ),
-        {
-          duration: 5000,
-        });
+        notify(`Error occurred submitting contact form. ${error}`);
       });
   };
 
@@ -177,6 +169,8 @@ const Index: React.FC = (): JSX.Element => {
                 <ReCAPTCHA
                   sitekey="6LdOKaYUAAAAAGjMLVg9qpoMss1Su76ohT7ovWHr"
                   onChange={handleCaptchaChange}
+                  onExpired={(): void => notify('Captcha challenge expired. Please complete captcha challenge.')}
+                  onErrored={(): void => notify('Captcha error occurred. Please complete captcha challenge.')}
                 />
               </div>
               <div className="field">
