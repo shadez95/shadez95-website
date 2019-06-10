@@ -3,6 +3,7 @@ import { isEmpty } from 'lodash';
 import { navigate } from 'gatsby';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'form-hooks';
+import toaster from 'toasted-notes';
 import { Layout } from '../../components/Layout';
 import { InputField } from '../../components/InputField';
 import { TextField } from '../../components/TextField';
@@ -43,7 +44,17 @@ const Index: React.FC = (): JSX.Element => {
         // navigate(actionAttr);
         navigate('/contact/thanks/');
       })
-      .catch((error): void => alert(error));
+      .catch((error): void => {
+        toaster.notify(({ onClose }): JSX.Element => (
+          <div className="notification is-danger">
+            <button type="button" onClick={onClose} className="delete" />
+            {`Error occurred submitting contact form. ${error}`}
+          </div>
+        ),
+        {
+          duration: 5000,
+        });
+      });
   };
 
   const [allValuesNotFilled, setAllValuesNotFilled] = useState(true);
