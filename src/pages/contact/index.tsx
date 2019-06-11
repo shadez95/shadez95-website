@@ -9,16 +9,13 @@ import { TextField } from '../../components/TextField';
 import { JSONKeyValueString } from '../../CustomTypes';
 import { notify } from '../../components/notify';
 
-function encode(data: JSONKeyValueString): string {
-  return Object.keys(data)
-    .map((key: string): string => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join('&');
-}
+const encode = (data: JSONKeyValueString): string => Object.keys(data)
+  .map((key: string): string => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+  .join('&');
 
-function validateEmail(email: string): boolean {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
+const validateEmail = (email: string): boolean => (
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    .test(String(email).toLowerCase()));
 
 const Index: React.FC = (): JSX.Element => {
   const [recaptchaValue, setRecaptchaValue] = useState('');
@@ -92,11 +89,9 @@ const Index: React.FC = (): JSX.Element => {
   });
 
   // captcha handler
-  function handleCaptchaChange(check: string | null): void {
-    if (typeof check === 'string') {
-      setRecaptchaValue(check);
-    }
-  }
+  const handleCaptchaChange = (check: string | null): void => {
+    if (typeof check === 'string') setRecaptchaValue(check);
+  };
 
   let nameSuccess;
   let emailSuccess;
