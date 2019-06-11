@@ -68,13 +68,12 @@ interface LinksQuery {
 export const Navbar: React.FC = (): JSX.Element => {
   const [active, setActive] = useState(false);
   const [socialNavbarItem, setSocialNavbarItem] = useState(true);
+
   useWindowResize((): void => {
     if (window.innerWidth < 1088) setSocialNavbarItem(false);
   }, true);
 
-  function toggleHamburger(): void {
-    setActive(!active);
-  }
+  const toggleHamburger = (): void => setActive(!active);
 
   const navBarActive = active ? 'is-active' : '';
 

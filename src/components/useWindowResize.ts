@@ -9,10 +9,10 @@ import { VoidFunction } from '../CustomTypes';
  * @param runInitial If present, the callback function will run on initial render
  *
  */
-export function useWindowResize(resizeFunction: VoidFunction, runInitial = false): void {
+export const useWindowResize = (resizeFunction: VoidFunction, runInitial = false): void => {
   useEffect((): VoidFunction => {
     if (runInitial) resizeFunction();
     window.addEventListener('resize', resizeFunction);
     return (): void => { window.removeEventListener('resize', resizeFunction); };
   });
-}
+};
