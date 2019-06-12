@@ -25,7 +25,13 @@ module.exports = {
       options: {
         name: 'shadez95 website',
         short_name: 'shadez95 website',
+        description: 'shadez95 is a developer, PC gamer, and automotive enthusiast',
         start_url: '/',
+        scope: '/',
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: 'standalone',
+        icon: 'static/assets/shadez.png', // This path is relative to the root of the site.
         background_color: '#162b35',
         theme_color: '#162b35',
         icons: [
@@ -49,10 +55,6 @@ module.exports = {
           { src: 'static/assets/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
           { src: 'static/assets/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
         ],
-        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
-        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
-        display: 'standalone',
-        icon: 'static/assets/shadez.png', // This path is relative to the root of the site.
       },
     },
     {
