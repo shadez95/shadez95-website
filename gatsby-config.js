@@ -24,7 +24,7 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'shadez95 website',
-        short_name: 'shadez95 website',
+        short_name: 'shadez95',
         description: 'shadez95 is a developer, PC gamer, and automotive enthusiast',
         start_url: '/',
         scope: '/',
