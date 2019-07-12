@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-title: I like to do a lot of stuff
+title: Problem solving is my specialty
 subtitles:
   - text: Developer
   - text: PC Gamer
@@ -15,3 +15,4 @@ links:
   - fontawesomeIcon: fab instagram
     url: 'https://www.instagram.com/shadez95/'
 ---
+
