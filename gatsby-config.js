@@ -15,6 +15,13 @@ module.exports = {
         siteUrl: 'https://shadez95.dev',
       },
     },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+        trackingId: 'UA-125871420-2',
+      },
+    },
     'gatsby-plugin-typescript',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sass',
